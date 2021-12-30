@@ -18,6 +18,8 @@ public class InfiniteArraySearch {
 
         while (target > nums[chunkEnd]){
             int temp = chunkEnd;
+            // new end = end + size of window*2
+            // size of window = end - start + 1
             chunkEnd = chunkEnd + (chunkEnd - chunkStart + 1)*2;
             chunkStart = temp + 1;
 //            System.out.println();

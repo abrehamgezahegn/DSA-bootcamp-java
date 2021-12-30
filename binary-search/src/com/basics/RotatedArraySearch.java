@@ -3,13 +3,16 @@ package com.basics;
 // https://leetcode.com/problems/search-in-rotated-sorted-array/
 public class RotatedArraySearch {
     public static void main(String[] args) {
-        int[] nums = {1};
+        int[] nums = {2,2,9,2,2,2,2,2,2,2};
 
         // {7,0,1,2,3,4}
-        System.out.println("search: " + search(nums, 0));
+//        System.out.println("Peak: " + findPeak(nums));
+        System.out.println("search: " + search(nums, 9));
     }
+
     static int search(int[] nums, int target) {
-        int peak = findPeakWithDuplicate(nums);
+//        int peak = findPeakWithDuplicate(nums);
+        int peak = findPeak(nums);
         System.out.println("peak " + peak);
         if(peak == -1){ // array is not rotated
             return orderAgnositicBSearch(nums, target, 0, nums.length - 1);
@@ -21,9 +24,13 @@ public class RotatedArraySearch {
         }
 
         // search in first half of the array (which is guaranteed to be asc array )
-        int firstHalfResult =  orderAgnositicBSearch(nums, target, 0, peak);
-        if(firstHalfResult > -1){
-            return firstHalfResult;
+//        int firstHalfResult =  orderAgnositicBSearch(nums, target, 0, peak);
+//        if(firstHalfResult > -1){
+//            return firstHalfResult;
+//        }
+
+        if(target >= nums[0]){ // search the first half
+         return orderAgnositicBSearch(nums, target, 0, peak-1);
         }
 
         //else search in second half of the array (which is also guaranteed to be asc array )
@@ -43,7 +50,8 @@ public class RotatedArraySearch {
             if (mid > start && arr[mid] < arr[mid - 1]) {
                 return mid-1;
             }
-            if (arr[mid] <= arr[start]) {
+            // this will fail if array contains duplicate values
+            if (arr[mid] < arr[start]) {
                 end = mid - 1;
             } else {
                 start = mid + 1;

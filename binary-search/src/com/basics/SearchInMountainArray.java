@@ -2,7 +2,7 @@ package com.basics;
 
 
 // https://leetcode.com/problems/find-in-mountain-array/
-public class MinIndexInMountainArray {
+public class SearchInMountainArray {
     public static void main(String[] args) {
         int[] mountainArr =  {1,5,2};
         int target = 2;
@@ -12,7 +12,7 @@ public class MinIndexInMountainArray {
         if(leftHalfResult > -1){
             System.out.println("left side " + leftHalfResult   );
         }
-        System.out.println("fining in right");
+        System.out.println("searching in right");
         System.out.println("right side: " +  orderAgnositicBSearch(mountainArr,target,peak,mountainArr.length - 1));
     }
 

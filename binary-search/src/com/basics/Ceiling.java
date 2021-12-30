@@ -3,8 +3,8 @@ package com.basics;
 public class Ceiling {
     public static void main(String[] args) {
 
-//      System.out.println("Ceiling of num: " + ceilingOfNum(new int[]{-4,3,12,33,45,46,78}, 88 ));
-        System.out.println("Ceiling of num: " + ceilingOfNum(new int[]{78, 46,35,24,12,11,10,-1}, 46 ));
+      System.out.println("Ceiling of num: " + ceilingOfNum(new int[]{3,3,5,9,14,16,24}, 9 ));
+//        System.out.println("Ceiling of num: " + ceilingOfNum(new int[]{78, 46,35,24,12,11,10,-1}, 46 ));
 
     }
 
@@ -21,15 +21,16 @@ public class Ceiling {
             return -1;
         }
 
-
-        while (start <= end){
+        int ans = -1;
+        while (start < end){
             middle = start + (end - start)  / 2;
             if(nums[middle] == target){
                 return middle;
             }
             if(isAsc){
                 if(nums[middle] > target ){
-                    end  = middle - 1;
+                    end  = middle;
+                    ans = middle;
                 }else {
                     start  = middle + 1;
                 }
@@ -45,7 +46,7 @@ public class Ceiling {
             }
         }
         if(isAsc){
-            return  start;
+            return  ans;
         }else {
             return end;
         }
